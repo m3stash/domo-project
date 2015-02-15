@@ -11,7 +11,8 @@
     "angular-sanitize": "^1.3.0",
     "angular-touch": "^1.3.0",
     "jquery": "latest",
-    "angular-bootstrap": "latest"
+    "angular-bootstrap": "latest",
+    "jquery.i18n.properties.js": "https://raw.githubusercontent.com/jquery-i18n-properties/jquery-i18n-properties/master/jquery.i18n.properties.js"
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"

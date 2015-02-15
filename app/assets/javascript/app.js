@@ -16,7 +16,7 @@ var domoProjectApp = angular
  	'ngRoute',
  	'ngSanitize',
  	'ngTouch',
- 	'ui.bootstrap'
+ 	'ui.bootstrap',
  	])
 .config(function ($routeProvider) {
  	$routeProvider
@@ -28,34 +28,26 @@ var domoProjectApp = angular
  		redirectTo: '/'
  	});
 })
-.run(function($rootScope, $window) {
- 	// $rootScope.Messages = $rootScope._i = function(code){
- 	// 	return $.i18n.prop.apply(null, arguments);
- 	// };
- 	// $rootScope.userInfos = window.userInfos;
- 	// $rootScope.newMap = {};
- 	// $rootScope.copyMap = {};
- 	// $rootScope.injectDraft = false;
- 	// $rootScope.keyDraft = '';
+.run(function($rootScope, $window, $cookies) {
+	//local gestion
+	$rootScope.Messages = $rootScope._i = function(code){
+        return $.i18n.prop.apply(null, arguments);
+   };
+	var localLang;
+	if($cookies.lang != null){
+		localLang = $cookies.lang;
+	}else{
+		localLang = (navigator.browserLanguage? navigator.browserLanguage : navigator.language);
+		$rootScope.defaultLang = localLang.substring(0,2);
+		$cookies.lang = localLang.substring(0,2);
+	}
+	$.i18n.properties({
+		name: 'messages',
+		path: 'assets/messages/',
+		mode: 'map',
+		cache: true,
+		language: localLang
+	});
 
- 	// $rootScope.inject = function(key){
- 	// 	$rootScope.injectDraft = true;
- 	// 	$rootScope.keyDraft = key;
- 	// };  
-
- 	// $rootScope.historic = function(key, value){
- 	// 	if($rootScope.inject){
-
- 	// 	}
- 	// 	if($rootScope.injectDraft){
- 	// 		$rootScope.newMap[key] = ($rootScope.listDraft[$rootScope.keyDraft]).newMap[key];
- 	// 		$rootScope.copyMap[key] = angular.copy(($rootScope.listDraft[$rootScope.keyDraft]).newMap[key]);
- 	// 		return ($rootScope.listDraft[$rootScope.keyDraft]).newMap[key];
- 	// 	}else{
- 	// 		$rootScope.newMap[key] = value;
- 	// 		$rootScope.copyMap[key] = angular.copy(value);
- 	// 		return value;
- 	// 	}
- 	// };
 });
 

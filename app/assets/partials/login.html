@@ -1,11 +1,19 @@
-<form name="formLogin" ng-submit="formConnection(formLogin)">
-	<div id="login">
-		<div class-"ctn-input">
-			<label>Login:</label>
-			<input type="text" name="user">
-			<label>Mot de passe:</label>
-			<input type="password" name="pwd">
+<div class="content login">
+	<form name="formLogin" ng-submit="formConnection(formLogin)">
+		<div id="login">
+			<div class="blockLeft">
+				<span class="title">{{_i('login.title.identExist')}}</span>
+				<div class-"ctn-input">
+					<i class="fa fa-user"></i>
+					<input class="form-control" placeholder="{{_i('login.labelLogin')}}" type="text" name="user">
+					<i class="fa fa-lock"></i>
+					<input class="form-control" placeholder="{{_i('login.labelPwd')}}" type="password" name="pwd">
+				</div>
+				<button type="submit" class="btn btn-info ng-binding">{{_i('common.connexion')}}</button>
+			</div>
+			<div class="blockRight">
+				<span class="title">{{_i('login.IdentCreate')}}</span>
+			</div>
 		</div>
-		<button type="submit" class="btn btn-primary ng-binding">Connexion</button>
-	</div>
-</form>
+	</form>
+</div>
