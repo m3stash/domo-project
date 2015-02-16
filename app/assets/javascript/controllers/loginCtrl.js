@@ -6,7 +6,7 @@ domoProjectApp.controller('LoginCtrl',  ['$scope', '$http', '$location', functio
 	};
 
 	$scope.formConnection = function(form){
-		$http.post('domo-project-rest-api/login', 'username=' + form.login + '&password=' + form.mdp, {
+		$http.post('intractiv-rest-api/login', 'username=' + form.login + '&password=' + form.mdp + '&submit=Login', {
 			headers : {
 				"Content-Type": "application/x-www-form-urlencoded"
 			}
