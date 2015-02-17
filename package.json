@@ -38,7 +38,8 @@
     "passport": "latest",
     "passport-local": "latest",
     "http": "latest",
-    "url": "latest"
+    "url": "latest",
+	"body-parser": "latest"
   },
   "engines": {
     "node": ">=0.10.0"
