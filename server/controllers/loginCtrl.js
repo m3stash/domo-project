@@ -5,6 +5,6 @@ exports.index = function(req, res){
 };
 
 exports.login = function(req, res){
-	console.log('test',req.body);
+	console.log('test ->',req.body);
 	res.status(200).end();
 };

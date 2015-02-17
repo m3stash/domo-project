@@ -2,11 +2,11 @@
 
     // set up ========================
     var express  = require('express');
-    var app = express();                               // create our app w/ express
+    var app = express();                              // create our app w/ express
     var mongoose = require('mongoose');                     // mongoose for mongodb
     var morgan   = require('morgan');             // log requests to the console (express4)
-    //var http     = require('http');
-    //var url      = require('url');
+    var http     = require('http');
+    var url      = require('url');
     var passport = require('passport')
         , LocalStrategy = require('passport-local').Strategy;
     var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
@@ -29,9 +29,10 @@
     app.use(express.static(__dirname, '/bower_components'));
     //app.use(express.static(__dirname + 'public'));                 // set the static files location /public/img will be /img for users
     app.use(morgan('dev'));                                         // log every request to the console
-    app.use(bodyParser.urlencoded({'extended':'false'}));            // parse application/x-www-form-urlencoded
+    app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
     app.use(bodyParser.json());                                     // parse application/json
 
     // listen (start app with node server.js) ======================================
-    app.listen(9000);
+	var server = http.createServer(app).listen(9000);
+	//var server = http.createServer(app).listen(9000);
 

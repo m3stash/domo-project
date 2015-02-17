@@ -5,7 +5,7 @@ domoProjectApp.controller('LoginCtrl',  ['$scope', '$http', '$location', functio
 		$scope.error=null;
 	};
 	$scope.formConnection = function(form){
-		/*$http({
+		$http({
 				method : 'POST',
 				url : '/login',
 				data: form
@@ -20,8 +20,8 @@ domoProjectApp.controller('LoginCtrl',  ['$scope', '$http', '$location', functio
 		}).error(function(response){
 			console.log('error', response)
 			//$scope.listError["login"]=$.i18n.prop('login.msg-error');
-		});*/
-		$http.post('/login', form).success(function(response){
+		});
+		/*$http.post('/login', form).success(function(response){
 			console.log('succes', response);
 			//pour l'instant, version simple, on recharge la page après le login
 			// if(){
@@ -32,7 +32,7 @@ domoProjectApp.controller('LoginCtrl',  ['$scope', '$http', '$location', functio
 		}).error(function(response){
 			console.log('error', response)
 			//$scope.listError["login"]=$.i18n.prop('login.msg-error');
-		});
+		});*/
 
 	};
 	

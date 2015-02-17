@@ -6,10 +6,6 @@ module.exports = function(app, passport){
 	
 	app.get('/', loginCtrl.index);
 	
-	//app.post('/login', loginCtrl.login);
-	
-	app.post('/login', function(req, res) {
-		console.log('---------', req.body)
-    });
+	app.post('/login', loginCtrl.login);
 
 }
