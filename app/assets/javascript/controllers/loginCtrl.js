@@ -1,12 +1,12 @@
 'use strict';
-domoProjectApp.controller('LoginCtrl',  ['$scope', '$http', '$location', function ($scope, $http, location) {
+domoProjectApp.controller('LoginCtrl',  ['$scope', '$http', '$location', function ($scope, $http, location){
 	
-	$scope.closeAlertLogin = function() {
+	$scope.closeAlertLogin = function(){
 		$scope.error=null;
 	};
 
 	$scope.formConnection = function(form){
-		$http.post('domo-project-rest-api/login', 'username=' + form.login + '&password=' + form.mdp, {
+		$http.post('/login', 'username=' + form.login + '&password=' + form.mdp, {
 			headers : {
 				"Content-Type": "application/x-www-form-urlencoded"
 			}

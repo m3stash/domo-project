@@ -22,10 +22,10 @@
     });
 
     // models & schemas ======================================================================
-    require('./schemas/schemas')(app);
+    
 
     //routes app ======================================
-    require('./routes')(app, passport);
+    require('./server/routes')(app, passport);
     //app.use(express.static(__dirname + '/app'));
     app.use(express.static(__dirname + '/app'));
     app.use(express.static(__dirname, '/bower_components'));
@@ -37,5 +37,5 @@
     //app.use(methodOverride());
 
     // listen (start app with node server.js) ======================================
-    app.listen(8080);
+    app.listen(9000);
 
