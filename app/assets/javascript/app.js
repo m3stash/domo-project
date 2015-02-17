@@ -20,12 +20,16 @@ var domoProjectApp = angular
  	])
 .config(function ($routeProvider) {
  	$routeProvider
- 	.when('/', {
+ 	.when('/login', {
  		templateUrl: 'assets/partials/login.html',
  		controller: 'LoginCtrl'
  	})
+ 	.when('/login/createAccount', {
+ 		templateUrl: 'assets/partials/createAccount.html',
+ 		controller: 'CreateAccountCtrl'
+ 	})
  	.otherwise({
- 		redirectTo: '/'
+ 		redirectTo: '/login'
  	});
 })
 .run(function($rootScope, $window, $cookies) {

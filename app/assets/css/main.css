@@ -1,12 +1,22 @@
 html, body {width:100%; height:100%; overflow:hidden; box-sizing:border-box;}
-.container {width:100%; height:100%; margin:0; padding:0;}
+.container {width:100%; height:100%; margin:0; padding:0; background:#F0F0F2;}
 .content {width:100%; height:100%; overflow-x:hidden; overflow-y:auto; }
-.content.login {background:url('../images/background-blue.jpg') no-repeat; background-size:100% 100%}
 
-#login {overflow:hidden; width:600px; padding:10px; border-radius:10px; color:white; margin:200px auto;
- /*background:#275F9C;*/ background:rgba(39, 95, 156, 0.5); box-shadow:1px 1px 18px -2px #111;}
-#login .title {display:block; margin-bottom:20px;}
-#login .blockLeft, #login .blockRight {float:left; width:50%; padding:2%;}
-#login .blockLeft button {float:right;}
-#login .blockLeft input {width:calc(100% - 45px); height:50px; border-radius:0 5px 5px 0; margin-bottom:20px;}
-#login .blockLeft .fa {background:#5bc0de; color:white; float:left; padding:17px; border-radius:5px 0 0px 5px; width:45px; font-size:16px;}
+/* login */
+#login {overflow:hidden; width:600px; color:white; margin:200px auto; padding:0 0 50px 0; background:white; border-radius:3px;}
+#login .title {display:block; margin-bottom:20px; line-height: 60px; background: #1CBBFF; padding: 0 20px; font-size:17px;}
+#login .blockLeft, #login .blockRight {float:left; width:50%;}
+#login .blockLeft button {float:right; height:50px; width:100%; text-align:left; background:#1CBBFF; margin-top:10px;}
+#login .blockLeft button .fa {float:right; height;auto; width:auto; padding:0; background:none; margin-top:3px; color:white;}
+#login .blockLeft .ctn-input {padding:30px;}
+#login .blockLeft input {width:calc(100% - 45px); height:50px; border-radius:0 5px 5px 0; margin-bottom:20px; border-radius:0; 
+	box-shadow:none; border:0; border-bottom:2px solid #e1e1e1;}
+#login .blockLeft .fa {color:#1CBBFF; float:left; padding:16px; width:45px; font-size:16px;}
+#login .blockRight .ctn-input {padding:30px;}
+#login .blockRight .ctn-input button {float:right; height:50px; width:100%; text-align:left; background:#1CBBFF; margin-top:10px;}
+#login .blockRight button a {color:white; text-decoration:none;}
+#login .blockRight .ctn-input button  .fa {float:right; height;auto; width:auto; padding:0; background:none; margin-top:3px; color:white;}
+
+/* Creat login */
+.content.createAccount {}
+.content.createAccount .stepContent {width:60%; height:500px; margin:100px auto; padding:0 0 50px 0; background:white; border-radius:3px;}

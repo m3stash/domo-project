@@ -1,18 +1,21 @@
 <div class="content login">
-	<form name="formLogin" ng-submit="formConnection(formLogin)">
+	<form name="formLogin" ng-submit="formConnection()">
 		<div id="login">
 			<div class="blockLeft">
 				<span class="title">{{_i('login.title.identExist')}}</span>
-				<div class-"ctn-input">
+				<div class="ctn-input">
 					<i class="fa fa-user"></i>
-					<input class="form-control" placeholder="{{_i('login.labelLogin')}}" type="text" name="user" ng-model="login">
+					<input class="form-control" placeholder="{{_i('login.labelLogin')}}" type="text" name="user" ng-model="loginObj.login">
 					<i class="fa fa-lock"></i>
-					<input class="form-control" placeholder="{{_i('login.labelPwd')}}" type="password" name="pwd" ng-model="pwd">
+					<input class="form-control" placeholder="{{_i('login.labelPwd')}}" type="password" name="pwd" ng-model="loginObj.pwd">
+					<button type="submit" class="btn btn-info ng-binding">{{_i('common.connexion')}} <i class="fa fa-chevron-right"></i></button>
 				</div>
-				<button type="submit" class="btn btn-info ng-binding">{{_i('common.connexion')}}</button>
 			</div>
 			<div class="blockRight">
 				<span class="title">{{_i('login.IdentCreate')}}</span>
+				<div class="ctn-input">
+					<button class="btn btn-info ng-binding"><a href="#/login/createAccount">{{_i('login.creatUser')}} <i class="fa fa-plus"></i></a></button>
+				</div>
 			</div>
 		</div>
 	</form>
