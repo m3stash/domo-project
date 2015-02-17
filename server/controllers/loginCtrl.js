@@ -5,5 +5,6 @@ exports.index = function(req, res){
 };
 
 exports.login = function(req, res){
-    //res.sendfile('app/index.html');
+	console.log('test',req.body);
+	res.status(200).end();
 };

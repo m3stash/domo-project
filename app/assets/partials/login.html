@@ -5,9 +5,9 @@
 				<span class="title">{{_i('login.title.identExist')}}</span>
 				<div class-"ctn-input">
 					<i class="fa fa-user"></i>
-					<input class="form-control" placeholder="{{_i('login.labelLogin')}}" type="text" name="user">
+					<input class="form-control" placeholder="{{_i('login.labelLogin')}}" type="text" name="user" ng-model="login">
 					<i class="fa fa-lock"></i>
-					<input class="form-control" placeholder="{{_i('login.labelPwd')}}" type="password" name="pwd">
+					<input class="form-control" placeholder="{{_i('login.labelPwd')}}" type="password" name="pwd" ng-model="pwd">
 				</div>
 				<button type="submit" class="btn btn-info ng-binding">{{_i('common.connexion')}}</button>
 			</div>
