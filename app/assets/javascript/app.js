@@ -24,7 +24,7 @@ var domoProjectApp = angular
  		templateUrl: 'assets/partials/login.html',
  		controller: 'LoginCtrl'
  	})
- 	.when('/login/createAccount', {
+ 	.when('/createAccount', {
  		templateUrl: 'assets/partials/createAccount.html',
  		controller: 'CreateAccountCtrl'
  	})
