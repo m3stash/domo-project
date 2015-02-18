@@ -8,24 +8,31 @@ var url      = require('url');
 var passport = require('passport')
 	, LocalStrategy = require('passport-local').Strategy;
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
+var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
+var session      = require('express-session');
+var configDB = require('./server/config/database.js');
 
 // mongo connect =================
-mongoose.connect('mongodb://mongoLogin:admin@ds043991.mongolab.com:43991/domo-project-db');     // connect to mongoDB database on modulus.io
+mongoose.connect(configDB.url); // connect to our database
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
 	console.log('connection ok calback ->', callback)
 });
+require('./server/config/passport')(passport);
 
-// models & schemas ======================================================================
-
-//app.use(express.static(__dirname + '/app'));
+// configuration ==============================================================
 app.use(express.static(__dirname + '/app'));
 app.use(express.static(__dirname, '/bower_components'));
-//app.use(express.static(__dirname + 'public'));                 // set the static files location /public/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
-app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
+//app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
+app.use(cookieParser()); // read cookies (needed for auth)
+// required for passport
+app.use(session({ secret: 'secretSession' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
 //routes app ======================================
 require('./server/routes')(app, passport);

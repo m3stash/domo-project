@@ -4,9 +4,9 @@ exports.createAccountIndex = function(req, res){
 	res.sendfile('app/assets/partials/createAccount.html')
 }
 
-var User = require('./schemas/user');
+var User = require('../models/user');
 exports.createAccountStep1 = function(req, res){
-	console.log(req.body);
+	console.log('-----',req.body);
 	//voir a cabler passport
 	/*var newUser = new User.create(UserSchemas, function(err, creatUser){
 		//creatUser.name = req.body.name
@@ -14,8 +14,9 @@ exports.createAccountStep1 = function(req, res){
 		//creatUser.email = req.body.email
 	});*/
 	
-	/*var newUser = new User.create(objetAcreer){
-		newUser.save(function(){
-		res.redirect('/');
-	});/
+	var newUser = new User({name: req.body.name, firstName: req.body.firstName});
+	newUser.save(function(){
+		console.log('ok save')
+		//res.redirect('/');
+	});
 };

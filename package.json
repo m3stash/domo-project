@@ -32,14 +32,17 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "load-grunt-tasks": "^3.1.0",
     "time-grunt": "^1.0.0",
+    "bcrypt-nodejs" : "latest",
     "mongoose": "latest",
     "express"    : "~4.7.2",
     "morgan"     : "~1.2.2",
     "passport": "latest",
     "passport-local": "latest",
-    "http": "latest",
     "url": "latest",
-	"body-parser": "latest"
+    "body-parser": "latest",
+    "cookie-parser": "~1.0.0",
+    "method-override": "~1.0.0",
+    "express-session": "~1.0.0" 
   },
   "engines": {
     "node": ">=0.10.0"
