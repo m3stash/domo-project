@@ -5,9 +5,12 @@ var bcrypt   = require('bcrypt-nodejs');
 
 var userSchema = new mongoose.Schema({
 	local: {
-		pseudo : { type : String, match: /^[a-zA-Z0-9-_]+$/ },
-		password : String,
-		date : { type : Date, default : Date.now }
+		login: { type : String, match: /^[a-zA-Z0-9-_]+$/ },
+		pwd: String,
+		name: String,
+		firstname: String,
+		email: String,
+		date: { type : Date, default : Date.now }
 	}
 });
 

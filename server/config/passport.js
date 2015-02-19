@@ -25,8 +25,8 @@ module.exports = function(passport) {
     // by default, if there was no name, it would just be called 'local'
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
-        passwordField : 'password',
+        usernameField : 'login',
+        passwordField : 'pwd',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) {
@@ -36,15 +36,15 @@ module.exports = function(passport) {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             User.findOne({ 'local.email' :  email }, function(err, user) {
-                console.log('passport.js -> err, user findone')
+                console.log('passport.js -> err, user findone', err, user)
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
                 // check to see if theres already a user with that email
                 if (user) {
-                    return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                    //return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+					return done(null, false);
                 } else {
-
                     // if there is no user with that email
                     // create the user
                     var newUser            = new User();
