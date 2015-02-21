@@ -11,7 +11,7 @@ domoProjectApp.controller('LoginCtrl',  ['$scope', '$http', '$location', functio
 		// 		url : '/login',
 		// 		data: $scope.loginObj
 		// 	})
-		$http.post('/signup',$scope.loginObj).success(function(response){
+		$http.post('/login',$scope.loginObj).success(function(response){
 			console.log('succes', response)
 			//pour l'instant, version simple, on recharge la page après le login
 			// if(){

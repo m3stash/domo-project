@@ -16,7 +16,7 @@ var configDB = require('./server/config/database.js');
 // mongo connect =================
 mongoose.connect(configDB.url); // connect to our database
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'connection database error:'));
 db.once('open', function (callback) {
 	console.log('connection ok calback ->', callback)
 });
