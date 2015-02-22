@@ -1,12 +1,35 @@
 <div class="content createAccount">
 	<div class="stepContent">
-		<span class="title">Etape 1 : Je créer mes identifiants
+		<div class="header">
+			<ul>
+				<li>
+					<span class="title">Etape 1 :<br/> Identifiants</span>
+					<span class="ctn-angle"><i class="fa fa-angle-right"></i></span>
+				</li>
+				<li>
+					<span class="title">Etape 2 :<br/>Configuration</span>
+					<span class="ctn-angle"><i class="fa fa-angle-right"></i></span>
+				</li>
+			</ul>
+		</div>
 		<div class="step" step>
-			<input class="form-control" placeholder="{{_i('creatAccount.name')}}" type="text" name="user" ng-model="creatAccountObj.name">
-			<input class="form-control" placeholder="{{_i('creatAccount.firstName')}}" type="text" name="user" ng-model="creatAccountObj.firstName">
-			<input class="form-control" placeholder="{{_i('creatAccount.email')}}" type="text" name="user" ng-model="creatAccountObj.email">
-			<input class="form-control" placeholder="{{_i('creatAccount.pwd')}}" type="text" name="user" ng-model="creatAccountObj.pwd">
-			<button class="btn btn-info ng-binding" ng-click="valid('step1')">{{_i('creatAccount.save')}} <i class="fa fa-floppy-o"></i></button>
+			<div class="ctn-input">
+				<i class="fa fa-user"></i>
+				<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.name']}" placeholder="{{_i('creatAccount.name')}}" type="text" name="user" ng-model="creatAccountObj.name">
+				<div class="error-message" ng-show="error['creatAccountObj.name']">{{error['creatAccountObj.name.error']}}</div>
+				<i class="fa fa-user"></i>
+				<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.firstName']}" placeholder="{{_i('creatAccount.firstName')}}" type="text" name="user" ng-model="creatAccountObj.firstName">
+				<div class="error-message" ng-show="error['creatAccountObj.firstName']">{{error['creatAccountObj.firstName.error']}}</div>
+				<i class="fa fa-envelope"></i>
+				<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.email']}" placeholder="{{_i('creatAccount.email')}}" type="text" name="user" ng-model="creatAccountObj.email">
+				<div class="error-message" ng-show="error['creatAccountObj.email']">{{error['creatAccountObj.email.error']}}</div>
+				<i class="fa fa-lock"></i>
+				<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.pwd']}" placeholder="{{_i('creatAccount.pwd')}}" type="text" name="user" ng-model="creatAccountObj.pwd">
+				<div class="error-message" ng-show="error['creatAccountObj.pwd']">{{error['creatAccountObj.pwd.error']}}</div>
+			</div>
+			<div class="footer">
+				<button ng-disabled="disableButton" class="btn btn-info fa ng-binding" ng-click="verifyFn(0, true)">{{_i('creatAccount.next')}} <i class="fa fa-step-forward"></i></button>
+			</div>
 		</div>
 	</div>
 </div>
