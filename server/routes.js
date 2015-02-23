@@ -24,6 +24,7 @@ module.exports = function(app, passport){
     app.post('/createAccount', passport.authenticate('local-signup') , function(req, res) { 
         //res.send(req.user);
     });
+    app.post('/verifEmail', createAccountCtrl.verifEmail);
 
 	app.get('/logout', function(req, res) {
         req.logout();

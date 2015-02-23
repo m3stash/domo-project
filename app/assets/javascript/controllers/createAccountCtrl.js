@@ -3,6 +3,7 @@
 domoProjectApp.controller('CreateAccountCtrl', ['$scope', '$http', '$location', function ($scope, $http, location){
 	$scope.creatAccountObj = {}
 	$scope.error = {};
+	$scope.btnStep = [];
 	$scope.$watch(function() {
 		$scope.stepObj = [
 			{
@@ -18,18 +19,17 @@ domoProjectApp.controller('CreateAccountCtrl', ['$scope', '$http', '$location', 
 
 	//check the list of error for this step
 	$scope.verifyFn = function(stepNumber, activeBlur){
-		console.log($scope.stepObj.length)
-		// var blur = false;
-		// if(activeBlur){
-
-		// }
-		var obj = $scope.stepObj[stepNumber].data;
-		for(var i=0; i<obj.length; i++){
-			$scope.errorType(obj[i])
+		if(activeBlur){
+			$scope.btnStep[stepNumber] = activeBlur;
+		}
+		if($scope.btnStep[stepNumber]){
+			var obj = $scope.stepObj[stepNumber].data;
+			for(var i=0; i<obj.length; i++){
+				$scope.errorType(obj[i]);
+			}
 		}
 	}
 
-	
 	var checkVoid = function(obj){	
 		if(obj.value == null){
 			$scope.error[obj.name] = true
@@ -41,6 +41,9 @@ domoProjectApp.controller('CreateAccountCtrl', ['$scope', '$http', '$location', 
 
 	var checkEmail = function(obj){
 		if(obj.value != null){
+			//console.log('ICIC',obj)
+			var email = {email: obj.value}
+			$http.post('/verifEmail', email)
 		}
 	}
 

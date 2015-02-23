@@ -16,3 +16,20 @@ exports.createAccountStep1 = function(req, res){
 		});*/
 	});
 };
+
+exports.verifEmail = function(req, res){
+		var userError = 'invalid user';
+		User.findOne({ 'local.email' : req.body.email}, function(err, user) {
+		console.log('ICICICICIC',err, user)
+		/*newUser.save(function(){
+			console.log('ok save')
+			//res.redirect('/');
+		});*/
+		if(!user){
+			console.log('erreur')
+			res.status(400).send(userError)
+		} else {
+			res.status(200).send(user);
+		}
+	});
+}
