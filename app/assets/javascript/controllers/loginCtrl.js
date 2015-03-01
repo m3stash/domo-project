@@ -5,7 +5,7 @@ domoProjectApp.controller('LoginCtrl',  ['$scope', '$http', '$location', functio
 		$scope.error=null;
 	};
 	$scope.loginObj = {}
-	$scope.formConnection = function(){
+	/*$scope.formConnection = function(){
 		// $http({
 		// 		method : 'POST',
 		// 		url : '/login',
@@ -23,6 +23,15 @@ domoProjectApp.controller('LoginCtrl',  ['$scope', '$http', '$location', functio
 			console.log('error', response)
 			//$scope.listError["login"]=$.i18n.prop('login.msg-error');
 		});
-	};
+	};*/
+
+	$scope.formConnection = function(){
+		console.log('co');
+		$http.get('/scanBluetooth').success(function(res){
+			console.log('succes',res)
+		}).error(function(res){
+			console.log('error',res)
+		})
+	}
 	
 }]);

@@ -1,7 +1,6 @@
 'user strict';
 
-module.exports = function(app, passport){
-	
+module.exports = function(app, passport, btSerial){
 	var loginCtrl = require('./controllers/loginCtrl');
 	app.get('/login', loginCtrl.index);
     app.post('/login',
@@ -31,11 +30,16 @@ module.exports = function(app, passport){
         res.redirect('/');
     });
 
+    var bluetooth = require('./libs/btSerial');
+    app.get('/scanBluetooth', function(req, res){
+        bluetooth(btSerial, req, res)
+    });
+
 }
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-    console.log('eq, res, next',eq, res, next)
+    console.log('eq, res, next',req, res, next)
     /*console.log('1',req)
     console.log('2',res)
     console.log('3',req)*/

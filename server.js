@@ -12,6 +12,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 var configDB = require('./server/config/database.js');
+var bson = require('bson');
+var btSerial = new (require('bluetooth-serial-port')).BluetoothSerialPort();
+//npm install -g node-gyp ?? apparement fait fonctionner le plugin suite au probleme de BSON
 
 // mongo connect =================
 mongoose.connect(configDB.url); // connect to our database
@@ -20,7 +23,9 @@ db.on('error', console.error.bind(console, 'connection database error:'));
 db.once('open', function (callback) {
 	console.log('connection ok calback ->', callback)
 });
+
 require('./server/config/passport')(passport);
+// require('./server/libs/btSerial');
 
 // configuration ==============================================================
 app.use(express.static(__dirname + '/app'));
@@ -35,7 +40,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 //routes app ======================================
-require('./server/routes')(app, passport);
+require('./server/routes')(app, passport, btSerial);
 
 // listen (start app with node server.js) ======================================
 /*var server = http.createServer(app).listen(9000, function (request, response) {

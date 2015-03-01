@@ -17,6 +17,7 @@ var domoProjectApp = angular
  	'ngSanitize',
  	'ngTouch',
  	'ui.bootstrap',
+ 	'directives'
  	])
 .config(function ($routeProvider) {
  	$routeProvider
@@ -27,6 +28,10 @@ var domoProjectApp = angular
  	.when('/createAccount', {
  		templateUrl: 'assets/partials/createAccount.html',
  		controller: 'CreateAccountCtrl'
+ 	})
+ 	.when('/sandbox', {
+ 		templateUrl: 'assets/partials/createAccount.html',
+ 		controller: 'SandboxCtrl'
  	})
  	.otherwise({
  		redirectTo: '/login'

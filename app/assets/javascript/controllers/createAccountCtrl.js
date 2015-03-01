@@ -3,6 +3,7 @@
 domoProjectApp.controller('CreateAccountCtrl', ['$scope', '$http', '$location', function ($scope, $http, location){
 	$scope.creatAccountObj = {}
 	$scope.error = {};
+	$scope.reduct = {};
 	$scope.btnStep = [];
 	$scope.$watch(function() {
 		$scope.stepObj = [
@@ -25,90 +26,89 @@ domoProjectApp.controller('CreateAccountCtrl', ['$scope', '$http', '$location', 
 		if($scope.btnStep[stepNumber]){
 			var obj = $scope.stepObj[stepNumber].data;
 			for(var i=0; i<obj.length; i++){
-				$scope.errorType(obj[i]);
+				$scope.errorType(stepNumber, obj[i]);
 			}
 		}
 	}
 
 	var checkVoid = function(obj){	
-		if(obj.value == null){
+		if(obj.value == null || obj.value == ''){
 			$scope.error[obj.name] = true
 			$scope.error[obj.name+'.error'] = $.i18n.prop('error.void');
+			return true;
 		}else{
 			$scope.error[obj.name] = false;
+			return false;
 		}
 	}
 
 	var checkEmail = function(obj){
 		if(obj.value != null){
-			//console.log('ICIC',obj)
 			var email = {email: obj.value}
-			$http.post('/verifEmail', email)
+			$scope.reduct[obj.name] = true;
+			$scope.showloaderEmail = true;
+			$http.post('/verifEmail', email).success(function(res){
+				if(res == true){
+					$scope.error[obj.name+'.error'] = $.i18n.prop('error.emailExist');
+					$scope.error[obj.name] = true;
+					$scope.reduct[obj.name] = false;
+					$scope.showloaderEmail = false;
+					return true;
+				}else{
+					$scope.error[obj.name] = false;
+					$scope.reduct[obj.name] = false;
+					$scope.showloaderEmail = false;
+					return false;
+				}
+			}).error(function(res){
+				console.log('err email', res)
+				$scope.reduct[obj.name] = false;
+				$scope.showloaderEmail = false;
+			})
 		}
 	}
 
 	//for every possible error, launch the funtion associted
-	$scope.errorType = function(obj){
+	$scope.errorType = function(stepNumber, obj){
+		var err = false;
 		for(var i=0; i<obj.errorType.length; i++){
 			switch(obj.errorType[i]) {
 			    case 'void': 
-			        checkVoid(obj);
+			        if(checkVoid(obj)){
+			        	err = true;
+			        }
 			        break;
 			    case 'email':
-			    	checkEmail(obj);
+			    	if(checkEmail(obj)){
+			    		err = true
+			    	}
 			        break;
 			    default:
 			}
 		}
+		if(err){
+			$scope.disableButton = true;
+		}else{
+			$scope.disableButton = false;
+			$scope.valid(stepNumber);
+		}
+			
 	}
 
 	//console.log('---',$scope.creatAccountObj.name.match("^([a-z]+(( |')[a-z]+)*)+([-]([a-z]+(( |')[a-z]+)*)+)*$"))
 	$scope.valid = function(step){
-		var step = parseInt(step);
-		//verifIfError($scope.error, step);
-		if(step == 1){
-			// if($scope.creatAccountObj.name == null){
-			// 	$scope.error[step].push({name : 'name', error : true});
-			// 	$scope.error['creatAccountObj.name.errorType'] = $.i18n.prop('error.void');
-			// }else{
-			// 	$scope.error['creatAccountObj.name.error'] = false;
-			// }
-			// if($scope.creatAccountObj.firstName == null){
-			// 	$scope.error[step].push({name : 'firstName', error : true});
-			// 	//$scope.error['creatAccountObj.firstName.error'] = true;
-			// 	$scope.error['creatAccountObj.firstName.errorType'] = $.i18n.prop('error.void');
-			// }else{
-			// 	$scope.error['creatAccountObj.firstName.error'] = false;
-			// }
-			// if($scope.creatAccountObj.email == null){
-			// 	$scope.error['creatAccountObj.email.error'] = true;
-			// 	$scope.error['creatAccountObj.email.errorType'] = $.i18n.prop('error.void');
-			// }else{
-			// 	$scope.error['creatAccountObj.email.error'] = false;
-			// }
-			// if($scope.creatAccountObj.pwd == null){
-			// 	$scope.error['creatAccountObj.pwd.error'] = true;
-			// 	$scope.error['creatAccountObj.pwd.errorType'] = $.i18n.prop('error.void');
-			// }else{
-			// 	$scope.error['creatAccountObj.pwd.error'] = false;
-			// }
-
-			/*if(!$scope.disableButton){
-				$http.post('/createAccount',$scope.creatAccountObj).success(function(response){
-				console.log('succes', response)
-				//pour l'instant, version simple, on recharge la page après le login
-				// if(){
-				// 	$location.path('/home');
-				// }else{
-				// 	$location.path('/');
-				// }
-				}).error(function(response){
-					if(response.trim() == 'existing email'){
-						$scope.error['creatAccountObj.email.error'] = true
-						$scope.error['creatAccountObj.email.errorType'] = $.i18n.prop('error.existingEMail');
-					}
-				});
-			}*/
+		if(step == 0){
+			$scope.animateStep = true;
+			$scope.stepNumber = step;
+			// $http.post('/createAccount',$scope.creatAccountObj).success(function(response){
+			// 	if(){
+					
+			// 	}else{
+					
+			// 	}
+			// }).error(function(response){
+			// 	console.log('err step 1 serveur')
+			// });
 		}
 	}
 
