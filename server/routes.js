@@ -13,14 +13,14 @@ module.exports = function(app, passport, btSerial){
     app.get('/loginFailure', function(req, res, next) {
         res.status(401).end('error');
     });
- 
+
     app.get('/loginSuccess', function(req, res, next) {
         res.status(200).end('succes');
     });
 
 	var createAccountCtrl = require('./controllers/createAccountCtrl');
     app.get('/createAccount', createAccountCtrl.createAccountIndex);
-    app.post('/createAccount', passport.authenticate('local-signup') , function(req, res) { 
+    app.post('/createAccount', passport.authenticate('local-signup') , function(req, res) {
         //res.send(req.user);
     });
     app.post('/verifEmail', createAccountCtrl.verifEmail);
@@ -43,7 +43,7 @@ function isLoggedIn(req, res, next) {
     /*console.log('1',req)
     console.log('2',res)
     console.log('3',req)*/
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated()){
         console.log('OUI loggeds')
         return next();

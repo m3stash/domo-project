@@ -19,12 +19,14 @@ html, body {width:100%; height:100%; overflow:hidden; box-sizing:border-box;}
 
 /* Creat login */
 .content.createAccount {}
-.content.createAccount .stepContent {width:60%; margin:100px auto; padding:0 0 50px 0; background:white; border-radius:3px;}
+.content.createAccount .footer {display:flex; flex-direction:row-reverse; padding:0 5%;}
 
 /* step */
-.step {padding:0 5%; display:block;}
-.step .footer {display:flex; flex-direction:row-reverse}
-.step .email.loader {display:inline-block!important;}
+.stepContent {width:60%; overflow:hidden; margin:100px auto; padding:0 0 50px 0; background:white; border-radius:3px;}
+.stepContent .step { display:flex;}
+.stepContent .step .email.loader {display:inline-block!important;}
+.stepContent .step .ctn-step {width:100%;}
+.stepContent .step li {padding:0 3%;}
 
 /* common */
 /* form */

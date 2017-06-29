@@ -47,4 +47,3 @@ require('./server/routes')(app, passport, btSerial);
     console.log('listening on port 9000');
 });*/
 app.listen(9000);
-

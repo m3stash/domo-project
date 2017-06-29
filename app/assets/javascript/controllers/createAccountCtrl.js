@@ -98,8 +98,6 @@ domoProjectApp.controller('CreateAccountCtrl', ['$scope', '$http', '$location', 
 	//console.log('---',$scope.creatAccountObj.name.match("^([a-z]+(( |')[a-z]+)*)+([-]([a-z]+(( |')[a-z]+)*)+)*$"))
 	$scope.valid = function(step){
 		if(step == 0){
-			$scope.animateStep = true;
-			$scope.stepNumber = step;
 			// $http.post('/createAccount',$scope.creatAccountObj).success(function(response){
 			// 	if(){
 					

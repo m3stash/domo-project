@@ -12,25 +12,30 @@
 				</li>
 			</ul>
 		</div>
-		<div class="step" step-animate step="stepNumber" animate="animateStep">
-			<div class="ctn-input">
-				<i class="fa fa-user"></i>
-				<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.name']}" placeholder="{{_i('creatAccount.name')}}" type="text" name="user" ng-model="creatAccountObj.name">
-				<div class="error-message" ng-show="error['creatAccountObj.name']">{{error['creatAccountObj.name.error']}}</div>
-				<i class="fa fa-user"></i>
-				<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.firstName']}" placeholder="{{_i('creatAccount.firstName')}}" type="text" name="user" ng-model="creatAccountObj.firstName">
-				<div class="error-message" ng-show="error['creatAccountObj.firstName']">{{error['creatAccountObj.firstName.error']}}</div>
-				<i class="fa fa-envelope"></i>
-				<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.email'], 'reduct': reduct['creatAccountObj.email']}" placeholder="{{_i('creatAccount.email')}}" type="text" name="user" ng-model="creatAccountObj.email">
-				<img class="loader.email" ng-show="showloaderEmail" src="assets/images/loader.gif" />
-				<div class="error-message" ng-show="error['creatAccountObj.email']">{{error['creatAccountObj.email.error']}}</div>
-				<i class="fa fa-lock"></i>
-				<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.pwd']}" placeholder="{{_i('creatAccount.pwd')}}" type="text" name="user" ng-model="creatAccountObj.pwd">
-				<div class="error-message" ng-show="error['creatAccountObj.pwd']">{{error['creatAccountObj.pwd.error']}}</div>
-			</div>
-			<div class="footer">
-				<button ng-disabled="disableButton" class="btn btn-info fa ng-binding" ng-click="verifyFn(0, true)">{{_i('creatAccount.next')}} <i class="fa fa-step-forward"></i></button>
-			</div>
+		<ul class="step" step-animate increment-type="{{stepType}}" step-number="2">
+			<li class="ctn-step">
+				<div class="ctn-input">
+					<i class="fa fa-user"></i>
+					<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.name']}" placeholder="{{_i('creatAccount.name')}}" type="text" name="user" ng-model="creatAccountObj.name">
+					<div class="error-message" ng-show="error['creatAccountObj.name']">{{error['creatAccountObj.name.error']}}</div>
+					<i class="fa fa-user"></i>
+					<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.firstName']}" placeholder="{{_i('creatAccount.firstName')}}" type="text" name="user" ng-model="creatAccountObj.firstName">
+					<div class="error-message" ng-show="error['creatAccountObj.firstName']">{{error['creatAccountObj.firstName.error']}}</div>
+					<i class="fa fa-envelope"></i>
+					<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.email'], 'reduct': reduct['creatAccountObj.email']}" placeholder="{{_i('creatAccount.email')}}" type="text" name="user" ng-model="creatAccountObj.email">
+					<img class="loader.email" ng-show="showloaderEmail" src="assets/images/loader.gif" />
+					<div class="error-message" ng-show="error['creatAccountObj.email']">{{error['creatAccountObj.email.error']}}</div>
+					<i class="fa fa-lock"></i>
+					<input class="form-control flat-input" ng-blur="verifyFn('0')" ng-class="{'error': error['creatAccountObj.pwd']}" placeholder="{{_i('creatAccount.pwd')}}" type="text" name="user" ng-model="creatAccountObj.pwd">
+					<div class="error-message" ng-show="error['creatAccountObj.pwd']">{{error['creatAccountObj.pwd.error']}}</div>
+				</div>
+			</li>
+			<li class="ctn-step">
+				step 2
+			</li>
+		</ul>	
+		<div class="footer">
+			<button ng-disabled="disableButton" class="btn btn-info fa ng-binding" ng-click="verifyFn(0, true); stepType = 'add'">{{_i('creatAccount.next')}} <i class="fa fa-step-forward"></i></button>
 		</div>
 	</div>
 </div>

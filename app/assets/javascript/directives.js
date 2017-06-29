@@ -3,18 +3,27 @@ directives.directive('stepAnimate', function(){
 	return {
 		restrict: 'A',
 		scope: {
-			animate: '='
+			stepNumber: '@',
+			incrementType: '@'
 		},
 		link: function($scope, element, attrs){
-			$scope.$watch('attrs', function(){
-				console.log(attrs)
-			})
-           	console.log('ici', attrs)
-           	// $scope.$watch('attrs', function(attrs){
-           	// 	console.log(attrs)
-           	// })
-           	// console.log($scope.animate)
-           	console.log('animate',$scope.animate)
+
+			var stepWidth = $(element).context.clientWidth;
+			$(element).css('width', stepWidth * $scope.stepNumber);
+			$(element).children('.ctn-step').css('width', stepWidth);
+			var margin = 0;
+			var currentStep = 1;
+			$scope.$watch('incrementType', function(){
+				if($scope.incrementType == 'add'){
+					if(currentStep <= parseInt($scope.stepNumber)){
+						currentStep++;
+						margin -= stepWidth;
+						$(element).children('.ctn-step').css('margin-left', margin)
+					}
+				}else if($scope.incrementType == 'min'){
+
+				}
+			});
 		}
 	};
 });
